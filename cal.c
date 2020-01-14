@@ -1,12 +1,12 @@
 #include<stdio.h>
-char *ROOT_MENU[] ={" 要进行哪种运算？\n","1.加法\n","3.乘法\n","4.除法\n",5."退出\n"};
+char *ROOT_MENU[] ={" 要进行哪种运算？\n","1.加法\n","3.乘法\n","4.除法\n","5.退出\n"};
 int ROOT_MENU_LEN = sizeof(ROOT_MENU)/sizeof(char *);
 enum FlowStatus{
 	ROOT, QUIT, OPT_ONE_INPUT, OPT_TWO_INPUT
 };
 enum CalculateType{
 	ADD, SUB, MUL, DIV, NONE
-}；
+};
 void displayRootMenu();
 int scanInt();
 void calculate(enum CalculateType calType, int calNumOne,int calNumTwo);
@@ -17,9 +17,9 @@ int main(){
 	int userInput=0;
 	enum FlowStatus flowStatus = ROOT;
 	enum CalculateType calType = NONE;
-	while(flowStatus){
-		Switch(flowStatus){
-			case ROOT;
+	while(flowStatus!=QUIT){
+		switch(flowStatus){
+			case ROOT:
 			displayRootMenu();
 			userInput = scanInt();
 			if (userInput <= 0|| userInput > ROOT_MENU_LEN -1){
@@ -34,17 +34,17 @@ int main(){
 			}
 			break;
 			case OPT_ONE_INPUT:
-			printf("请输入第一个操作数：")；
+			printf("请输入第一个操作数：");
 			calNumOne = scanInt();
 			flowStatus = OPT_TWO_INPUT;
 			break;
 			case OPT_TWO_INPUT:
-			printf("请输入第二个操作数：")；
+			printf("请输入第二个操作数：");
 			calNumTwo = scanInt();
 			calculate(calType, calNumOne, calNumTwo);
 			flowStatus = ROOT;
 			break;
-			case QUIT;
+			case QUIT:
 			return 0;
 		}
 	}
@@ -64,15 +64,15 @@ void displayRootMenu(){
 	for (int i =0;i < ROOT_MENU_LEN;i++){
 		printf("%s",ROOT_MENU[i]);
 	}
-	printf("请输入：")；
+	printf("请输入：");
 }
-void calculate(enum CalculateType calType calType,int calNumOne,int calNumTwo){
+void calculate(enum CalculateType calType,int calNumOne,int calNumTwo){
 	switch(calType){
 		case ADD:
 		printf("%d + %d = %d\n",calNumOne, calNumTwo, calNumOne + calNumTwo);
 		break;
 		case SUB:
-		printf("%d - %d = %d\n",calNumeOne, calNumTwo, calNumOne - calNumTwo);
+		printf("%d - %d = %d\n",calNumOne, calNumTwo, calNumOne - calNumTwo);
 		break;
 		case MUL:
 		printf("%d * %d = %d\n",calNumOne, calNumTwo, calNumOne * calNumTwo);
